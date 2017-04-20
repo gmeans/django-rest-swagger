@@ -1,4 +1,4 @@
-import coreapi
+from coreapi import Document
 from coreapi.compat import force_bytes
 from django.shortcuts import render, resolve_url
 from openapi_codec import OpenAPICodec as _OpenAPICodec
@@ -12,7 +12,7 @@ from .settings import swagger_settings
 
 class OpenAPICodec(_OpenAPICodec):
     def encode(self, document, extra=None, **options):
-        if not isinstance(document, coreapi.Document):
+        if not isinstance(document, Document):
             raise TypeError('Expected a `coreapi.Document` instance')
 
         data = generate_swagger_object(document)
